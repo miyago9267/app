@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>臺灣最新 COVID-19 確診病例數統計</title>
+    <link
+      rel="canonical"
+      href="https://taoyuan-daily-epidemic-stat.glitch.me/"
+    />
+    <meta name="description" content="臺灣每日 COVID-19 確診病例數統計儀表板" />
+    <meta name="robots" content="index,nofollow" />
+    <meta property="og:title" content="臺灣最新 COVID-19 確診病例數統計" />
+    <meta property="og:description" content="臺灣每日 COVID-19 確診病例數統計儀表板" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Latest Tailwind Library -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akshar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body class="bg-darkprimary" id="app">
+    <div class="bg-primary">
+      <div class="max-w-lg text-center mx-auto p-8">
+        <p class="text-primary p-4 text-2xl">臺灣 COVID-19 疫情統計<br>（{{ date }}）</p>
+        <div class="bg-green-600 mb-2 p-2 rounded-3xl">
+          <div class="bg-gradient-to-r from-cyan-500 to-blue-500 m-1 p-4 rounded-3xl text-white">
+            <p class="text-xl pb-1">本日新增確診</p>
+            <p class="text-5xl font-medium p-2">{{ total }}</p>
+          </div>
+          <div class="flex w-100">
+            <div class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 m-1 p-4 rounded-3xl text-white">
+              <p class="text-xl pb-1">本土個案</p>
+              <p class="text-5xl font-medium p-2">{{ local }}</p>
+            </div>
+            <div class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 m-1 p-4 rounded-3xl text-white">
+              <p class="text-xl pb-1">境外移入</p>
+              <p class="text-5xl font-medium p-2">{{ remote }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="max-w-lg mb-2">
+          <select v-model="area" class="p-2 max-w-lg bg-green-600 hover:bg-green-500 rounded-3xl text-white text-center">
+            <option v-for="(key, item) in areas" :value="item">
+              <p class="text-xl pb-1">{{ key }}</p>
+            </option>
+          </select>
+        </div>
+        <div class="bg-green-600 p-2 rounded-3xl">
+          <div class="bg-gradient-to-r from-cyan-500 to-blue-500 m-1 p-4 rounded-3xl">
+            <p class="text-xl pb-1">{{ areaDisplay }}新增</p>
+            <p class="text-5xl font-medium p-2">{{ areaCount }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="h-100">
+        <p class="bg-darkprimary text-center text-primary">
+          上述資料以<a :href="link" target="_blank" class="underline">中央流行疫情指揮中心公告</a>為準
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
